@@ -3,7 +3,7 @@ import { Beans } from "@web3uikit/icons";
 import styles from "../styles/Home.module.css";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import React from "react";
-import web3Modal from "web3modal";
+import Web3Modal from "web3modal";
 import { providers } from "ethers";
 
 export default function Header() {
@@ -11,11 +11,11 @@ export default function Header() {
   const { isConnected } = useAccount();
   const { connect, connectors } = useConnect();
   const { disconnect } = useDisconnect();
-  const web3ModalRef = useRef();
   const [walletConnected, setWalletConnected] = useState(false);
+  const web3ModalRef = useRef<any>();
 
   const getProviderOrSigner = async (needSigner = false) => {
-    const provider = await web3ModalRef.current.connect();
+    const provider = await web3ModalRef.current.current();
     const web3Provider = new providers.Web3Provider(provider);
     const { chainId } = await web3Provider.getNetwork();
     if (chainId !== 11155111) {
@@ -52,7 +52,7 @@ export default function Header() {
   };
   useEffect(() => {
     if (!walletConnected) {
-      web3ModalRef.current = new web3Modal({
+      web3ModalRef.current = new Web3Modal({
         network: "sepolia",
         providerOptions: {},
         disableInjectedProvider: false,

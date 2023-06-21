@@ -15,7 +15,7 @@ export default function Header() {
   const web3ModalRef = useRef<any>();
 
   const getProviderOrSigner = async (needSigner = false) => {
-    const provider = await web3ModalRef.current.current();
+    const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
     const { chainId } = await web3Provider.getNetwork();
     if (chainId !== 11155111) {

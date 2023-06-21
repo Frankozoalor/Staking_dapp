@@ -160,11 +160,11 @@ export default function Staking() {
                 />
                 <section className={styles.stakingInfo}>
                   <p>
-                    Balance:{" "}
+                    Balance:
                     {assets.length > 0 &&
                       assets.map((a, id) => {
                         if (a.open) {
-                          return <span key={id}> {a.etherStaked}</span>;
+                          return <span> {a.etherStaked}</span>;
                         } else {
                           return <span></span>;
                         }

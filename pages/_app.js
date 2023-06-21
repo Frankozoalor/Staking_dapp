@@ -8,6 +8,11 @@ export default function App({ Component, pageProps }) {
     [publicProvider()]
   );
 
+  // const { provider_ } = provider;
+  // if (provider_ !== sepolia) {
+  //   window.alert("Change the network to sepolia");
+  //   throw new Error("Change the network to sepolia");
+  // }
   const client = createClient({
     autoConnect: true,
     provider,

@@ -1,5 +1,6 @@
 import styles from "../styles/Home.module.css";
 import Staking from "./staking";
+import Header from "./header";
 import StakingData from "./stakingData";
 import React from "react";
 

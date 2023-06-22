@@ -5,7 +5,6 @@ import { useAccount, useContract, useProvider, useSigner } from "wagmi";
 import { ethers } from "ethers";
 import { CONTRACT_ADDRESS, ABI } from "../constants/index";
 import React from "react";
-import { providers, Signer } from "ethers";
 
 export default function Staking() {
   const { isConnected, address } = useAccount();
@@ -18,6 +17,7 @@ export default function Staking() {
   const [assetIds, setAssetIds] = useState([]);
   const [assets, setAssets] = useState([]);
   const [amount, setAmount] = useState<string | number>(0);
+  const web3ModalRef = useRef<any>();
 
   const toWei = (ether: string) => ethers.utils.parseEther(ether);
   const toEther = (wei: string) => ethers.utils.formatEther(wei);
@@ -37,19 +37,6 @@ export default function Staking() {
       getWalletBalance();
     }
   }, [isConnected]);
-
-  // const getProviderOrSigner = async (needSigner = true) => {
-  //   const provider = await web3ModalRef.current.connect();
-  //   const web3Provider = new providers.Web3Provider(provider);
-  //   const { chainId } = await web3Provider.getNetwork();
-
-  //   if (needSigner) {
-  //     const signer = web3Provider.getSigner();
-  //     return signer;
-  //   }
-
-  //   return web3Provider;
-  // };
 
   const contract = useContract({
     address: CONTRACT_ADDRESS,

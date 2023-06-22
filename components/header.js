@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Beans } from "@web3uikit/icons";
+
 import styles from "../styles/Home.module.css";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 

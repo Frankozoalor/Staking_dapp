@@ -14,7 +14,7 @@ export default function Header() {
   const [walletConnected, setWalletConnected] = useState(false);
   const web3ModalRef = useRef<any>();
 
-  const getProviderOrSigner = async (needSigner = false) => {
+  const getProviderOrSigner = async (needSigner = true) => {
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
     const { chainId } = await web3Provider.getNetwork();
@@ -33,7 +33,7 @@ export default function Header() {
 
   const connectWallet = async () => {
     try {
-      await getProviderOrSigner();
+      await getProviderOrSigner(true);
       setWalletConnected(true);
     } catch (err) {
       console.log(err);
